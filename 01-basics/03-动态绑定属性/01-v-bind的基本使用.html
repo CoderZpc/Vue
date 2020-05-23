@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+  <div id="app">
+    <img src="https://cn.vuejs.org/images/logo.png" alt=""><br>
+    <img v-bind:src="imgUrl" alt=""><br>
+    <a href="http://www.baidu.com">百度一下</a>
+    <a v-bind:href="aHref">百度一下</a>
+
+    <a :href="aHref">百度一下</a>
+    <!-- v-bind简写':' -->
+
+    <!-- 以下错误 标签内的属性不可用mustache语法 -->
+    <!-- <img src="imgUrl" alt=""> -->
+    <!-- <img src="{{imgUrl}}" alt=""> -->
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好！',
+        imgUrl: 'https://cn.vuejs.org/images/logo.png',
+        aHref: 'http://www.baidu.com'
+      }
+    })
+  </script>
+
+</body>
+
+</html>

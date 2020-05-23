@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <cpn></cpn>
+  </div>
+  <img src="../img/组件数据存放.jpg" alt="">
+
+  <template id="cpn">
+    <div>
+      <h2>{{message}}</h2>
+      <p>我是内容，111111</p>
+      <p>我是内容，222222</p>
+    </div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.component('cpn', {
+      template: '#cpn',
+      data(){
+        return {
+          message: '你好！'
+        }
+      }
+    })
+
+    const app = new Vue({
+      el: '#app'
+    })
+  </script>
+
+</body>
+
+</html>

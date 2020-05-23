@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="message"><br>
+    <!-- 不用v-model也能双向绑定 -->
+    <input type="text" :value="message" @input="valueChange"><br><!-- 可以不加(event),不加参数时默认传event --><!-- input标签的input事件，实时监听input的输入 -->
+    <input type="text" :value="message" @input="message = $event.target.value"><!-- 可以不用写方法 -->
+    <h2>{{message}}</h2>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好！'
+      },
+      methods:{
+        valueChange(event){
+          this.message = event.target.value
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>

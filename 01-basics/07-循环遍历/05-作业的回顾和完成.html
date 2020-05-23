@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 需求，默认第一项红色，点击列表中的哪一项，哪一项变成红色 -->
+  <div id="app">
+    <ul>
+      <li v-for="(item, index) in movies" v-bind:class="{active: currentIndex === index}" @click="liClick(index)">
+        {{item}}
+      </li>
+    </ul>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        movies: ['1', '2', '3', '4', '5', '6'],
+        currentIndex: 0
+      },
+      methods: {
+        liClick: function (index) {
+          this.currentIndex = index
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>

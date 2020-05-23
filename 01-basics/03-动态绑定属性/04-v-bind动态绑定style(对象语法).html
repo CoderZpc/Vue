@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- <h2 v-bind:style="{key(属性名): value(属性值)}">{{message}}</h2> -->
+    <!-- <h2 v-bind:style="{fontSize: 50px}">{{message}}</h2>   错误，在vue中，没有引号就是变量，50px必须加引号-->
+    <h2 v-bind:style="{fontSize: '50px'}">{{message}}</h2>
+    <h2 :style="{fontSize: finalSize}">{{message}}</h2>
+    <h2 :style="{fontSize: size + 'px', color: finalColor}">{{message}}</h2>
+    <h2 :style="getStyles()">{{message}}</h2>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好！',
+        finalSize: '100px',
+        size: 100,
+        finalColor: 'red'
+      },
+      methods: {
+        getStyles: function () {
+          return { fontSize: this.size + 'px', backgroundColor: this.finalColor }
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>

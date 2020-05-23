@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn :number1="num1" :number2="num2" @num1change="num1Change" @num2change="num2Change"></cpn>
+    <!-- <cpn/> 可以使用单标签 -->
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h2>props:{{number1}}</h2>
+      <h2>data:{{dnumber1}}</h2>
+
+      <!-- 1.子组件不能用v-model直接绑定props内的数据，必须通过data或computed，否则会报错 -->
+      <input type="text" v-model="dnumber1">
+
+      <!-- 2.子组件把值回传给父组件,先实现v-model，然后在子组件使用$emit传值，在父组件中@num1change接收 -->
+      <input type="text" v-bind:value="dnumber1" @input="num1Input">
+
+      <h2>props:{{number2}}</h2>
+      <h2>data:{{dnumber2}}</h2>
+      <input type="text" v-model="dnumber2">
+      <input type="text" :value="dnumber2" @input="num2Input">
+    </div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        num1: 1,
+        num2: 0
+      },
+      methods: {
+        num1Change(value) {   //value是字符串，需要转换类型
+          this.num1 = value * 1  //可以字符串转整形
+        },
+        num2Change(value) {
+          this.num2 = parseInt(value)     //paresInt()转为int型，也可以parseFloat()
+        }
+      },
+      components: {
+        cpn: {
+          template: '#cpn',
+          props: {
+            number1: Number,
+            number2: Number
+          },
+          data() {
+            return {
+              dnumber1: this.number1,
+              dnumber2: this.number2
+            }
+          },
+          methods: {
+            num1Input(event) {
+              // 1.将input中的value赋值到dnumber1中
+              this.dnumber1 = event.target.value;
+
+              // 2.为了让父组件可以修改值，发出一个事件
+              this.$emit('num1change', this.dnumber1);
+
+              // 3.同时修改dnmuber2的值(改变1的值时，2的值为1的100倍)
+              this.dnumber2 = this.dnumber1 * 100
+              this.$emit('num2change', this.dnumber2)  //如果不发出，那么props的值还是不变
+
+            },
+            num2Input(event) {
+              this.dnumber2 = event.target.value;
+              this.$emit('num2change', this.dnumber2);
+              this.dnumber1 = this.dnumber2 / 100
+              this.$emit('num1change', this.dnumber1) 
+            }
+          }
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>

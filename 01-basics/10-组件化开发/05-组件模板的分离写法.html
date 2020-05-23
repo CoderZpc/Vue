@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <cpn></cpn>
+  </div>
+  <img src="../img/模本的分离写法.jpg" alt="">
+
+  <!-- a -->
+  <script type="text/x-template" id="cpn">
+    <div>
+      <h2>我是标题</h2>
+      <p>我是内容，111111</p>
+      <p>我是内容，222222</p>
+    </div>
+  </script>
+
+  <!-- b.template标签 -->
+  <template id="cpn">
+    <div>
+      <h2>我是标题</h2>
+      <p>我是内容，111111</p>
+      <p>我是内容，222222</p>
+    </div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    /*************常规写法**************/ 
+
+    // Vue.component('cpn', {
+    //   template: `
+    //   <div>
+    //     <h2>我是标题</h2>
+    //     <p>我是内容，111111</p>
+    //     <p>我是内容，222222</p>
+    //   </div>`
+    // })
+    
+    /*************简便写法**************/ 
+    // a或b引用id即可
+    Vue.component('cpn', {
+      template: '#cpn'
+    })
+
+
+    const app = new Vue({
+      el: '#app'
+    })
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+  <script>
+    // ES5之前的var没有块级作用域，因为if和for都没有块级作用域的概念，所以必须借助function的作用域来解决应用外面变量的问题
+    // ES6中加入了let，let是有if和for的块级作用域
+    // 1.变量作用域：变量在什么范围内是可用的
+    {// 大括号就是块级，但是var在块外也能访问
+      var name = 'abc';
+      console.log(name);
+    }
+    console.log(name);
+
+    // 2.没有块级作用域引起的问题：for的块级 if的块级都没有作用域；function有作用域
+    if (true) {
+      var a = 'aaa';
+    }
+    console.log(a);
+  </script>
+
+</body>
+
+</html>

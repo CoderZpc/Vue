@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+
+<!-- 
+  1.基本使用<slot></slot>
+  2.默认值<slot><button>按钮</button></slot>
+  3.如果有多个值，同时放入到组件进行替换，一起作为替换元素
+ -->
+
+  <div id="app">
+    <!-- 按钮，不指定时有默认值 -->
+    <cpn></cpn>
+    <!-- span -->
+    <cpn>
+      <span>哈哈哈</span>
+    </cpn>
+    <!-- i标签显示内容为斜体，如果只有一个slot，但是要替换的不止一个标签，可以全部替换的同一个slot的位置 -->
+    <cpn>
+      <i>显示内容为斜体</i>
+      <p>我是p元素</p>
+    </cpn>
+    <!-- 按钮 -->
+    <cpn></cpn>
+    <cpn></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h2>我是组件</h2>
+      <p>我是组件，哈哈哈</p>
+      <!-- slot可以给默认值,在调用标签时，如果没有指定就显示默认值 -->
+      <slot><button>按钮</button></slot>
+    </div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好！'
+      },
+      components:{
+        cpn:{
+          template: '#cpn'
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>

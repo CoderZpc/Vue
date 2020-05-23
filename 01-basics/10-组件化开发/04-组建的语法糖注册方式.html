@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <cpn1></cpn1>
+    <cpn2></cpn2>
+    <cpn3></cpn3>
+    <cpn4></cpn4>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    // 一.全局组件
+    // 1.创建组件构造器(语法糖不需要extend这一步)
+    const cpn1 = Vue.extend({
+      template: `
+      <div>
+        <h2>我是标题1</h2>
+        <p>我是内容，111111</p>
+      </div>`
+    })
+    // 常规写法
+    Vue.component('cpn1', cpn1)
+
+    // 语法糖
+    Vue.component('cpn2', {
+      template: `
+      <div>
+        <h2>我是标题2</h2>
+        <p>我是内容，222222</p>
+      </div>`
+    })
+
+    /*****************************************************************/
+
+    // 二.局部组件
+    // 1.创建组件构造器(语法糖不需要extend这一步)
+    const cpn3 = Vue.extend({
+      template: `
+      <div>
+        <h2>我是标题3</h2>
+        <p>我是内容，333333</p>
+      </div>`
+    })
+    const app = new Vue({
+      el: '#app',
+      components: {
+        // 常规写法
+        cpn3: cpn3,
+        // 语法糖
+        cpn4: {
+          template: `
+          <div>
+            <h2>我是标题4</h2>
+            <p>我是内容，444444</p>
+          </div>`
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>

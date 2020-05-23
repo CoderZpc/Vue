@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 1.默认展示 -->
+    <cpn></cpn>
+    <!-- 2. -->
+    <cpn>
+      <!-- 拿不到子组件的数据pLanguages -->
+      <!-- <span v-for="item in pLanguages">{{item}}</span> -->
+
+      <!-- 使用template是获取子组件中的pLanguages -->
+      <template slot-scope="slot">
+        <span v-for="item in slot.data">{{item}} - </span>
+      </template>
+    </cpn>
+
+    <cpn>
+      <template slot-scope="slot">
+        <!-- 去掉最后多余的空格，join()可以把数组转化为字符串并以要求的内容进行分割 -->
+        <span>{{slot.data.join(' - ')}}</span>
+      </template>
+    </cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <slot :data="pLanguages"><!-- data可以随便命名 -->
+        <ul>
+          <li v-for="item in pLanguages">{{item}}</li>
+        </ul>
+      </slot>
+    </div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊'
+      },
+      components: {
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              pLanguages: ['JavaScript', 'C++', 'Java', 'C#', 'Pythin', 'Go', 'Swift']
+            }
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
