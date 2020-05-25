@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    // 可以只使用then,then(函数1,函数2),函数1对应resolve,函数2对应reject
+    // reject可以省略
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('suc')
+        reject('err')
+      })
+    }).then(data => {
+      console.log(data);
+    }, err => {
+      console.log(err);
+    })
+  </script>
+
+</body>
+
+</html>

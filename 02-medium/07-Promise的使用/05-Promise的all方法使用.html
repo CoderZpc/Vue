@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 在不使用Promise.all时，写起来很麻烦，需要使用两个布尔值判断两个ajax分别返回成功才能继续执行
+    // 当两个ajax都返回成功，才执行then()
+    Promise.all([
+      new Promise((resolve, reject) => {
+        // $.ajax({
+        //   url: 'url1',
+        //   success: function(data){
+        //     resolve(data)
+        //   }
+        // })
+        // 使用setTimeout模拟
+        setTimeout(() => {
+          resolve({ name: 'James', age: 18, height: 2.03 })
+        }, 2000)
+      }),
+      new Promise((resolve, reject) => {
+        // $.ajax({
+        //   url: 'url2',
+        //   success: function(data){
+        //     resolve(data)
+        //   }
+        // })
+        setTimeout(() => {
+          resolve({ name: 'Zpc', age: 18, height: 1.83 })
+        }, 2000)
+      })
+    ]).then(results => {
+      console.log(results)
+    })
+  </script>
+</body>
+
+</html>

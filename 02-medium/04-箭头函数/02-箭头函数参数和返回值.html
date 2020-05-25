@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    // 1.参数问题
+    // 1.1两个参数
+    const sum = (num1, num2) => {
+      return num1 + num2
+    }
+    // 1.2一个参数
+    const power = num => {
+      // 一个参数时，参数外的括号可以省略
+      return num * num
+    }
+
+    // 2.
+    // 2.1函数代码块中有多行代码时
+    const test = () => {
+      // 1.打印hello word
+      console.log('hello word');
+
+      // 2.打印hello vuejs
+      console.log('hello vuejs');
+
+    }
+
+    // 2.2函数代码块中只有一行代码
+    // const mul = (num1, num2) => {
+    //   return num1 * num2
+    // }
+    // 一行有返回值 可以写成
+    const mul = (num1, num2) => num1 * num2
+    console.log(mul(20,30));
+    // 一行没返回值
+    const demo = () => console.log('hello demo');
+    // 返回值undefined
+    console.log(demo());
+
+  </script>
+</body>
+
+</html>
